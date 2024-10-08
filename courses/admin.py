@@ -20,3 +20,10 @@ class CourseAdmin(admin.ModelAdmin):
     search_fields = ['title', 'overview']
     prepopulated_fields = {'slug': ('title',)}
     inlines = [ModuleInline]
+
+
+@admin.register(Module)
+class ModuleAdmin(admin.ModelAdmin):
+    list_display = ['title', 'order', 'course']  # Customize fields displayed in the list view
+    search_fields = ['title', 'course__title']  # Allow searching by module title or course title
+    list_filter = ['course']  # Add a filter by course
