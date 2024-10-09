@@ -14,7 +14,7 @@ from .models import Course
 
 # def home(request):
 #     return HttpResponse("Welcome to the E_Learning homepage!")
-
+ 
 
 class OwnerMixin:
     def get_queryset(self):
