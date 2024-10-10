@@ -8,7 +8,7 @@ urlpatterns = [
         views.ManageCourseListView.as_view(),
         name='manage_course_list',
     ),
-     path(
+    path(
         'create/',
         views.CourseCreateView.as_view(),
         name='course_create',
@@ -28,7 +28,7 @@ urlpatterns = [
         views.CourseModuleUpdateView.as_view(),
         name='course_module_update',
     ),
-        path(
+    path(
         'module/<int:module_id>/content/<model_name>/create/',
         views.ContentCreateUpdateView.as_view(),
         name='module_content_create',
@@ -42,5 +42,10 @@ urlpatterns = [
         'content/<int:id>/delete/',
         views.ContentDeleteView.as_view(),
         name='module_content_delete',
+    ),
+    path(
+        'module/<int:module_id>/',
+        views.ModuleContentListView.as_view(),
+        name='module_content_list',
     ),
 ]
