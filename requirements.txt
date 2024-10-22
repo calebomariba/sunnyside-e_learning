@@ -6,6 +6,7 @@ django-braces==1.15.0
 django-embed-video==1.4.9
 idna==3.10
 pillow==10.3.0
+pymemcache==4.0.0
 requests==2.32.3
 setuptools==75.2.0
 sqlparse==0.5.1
