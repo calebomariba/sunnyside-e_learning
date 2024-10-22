@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'embed_video',
     'debug_toolbar',
+    'redisboard',
 ]
 
 MIDDLEWARE = [
