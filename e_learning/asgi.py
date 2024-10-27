@@ -8,15 +8,20 @@ https://docs.djangoproject.com/en/5.0/howto/deployment/asgi/
 """
 
 import os
-
+from channels.auth import AuthMiddlewareStack
+from channels.routing import ProtocolTypeRouter, URLRouter
 from django.core.asgi import get_asgi_application
-from channels.routing import ProtocolTypeRouter
+
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "e_learning.settings")
 
 django_asgi_app = get_asgi_application()
 
-application = ProtocolTypeRouter(
-    {
+from chat.routing import websocket_urlpatterns
+
+application = ProtocolTypeRouter({
         'http': django_asgi_app,
-    })
+        'websocket': AuthMiddlewareStack(
+            URLRouter(websocket_urlpatterns)
+        ),
+})
