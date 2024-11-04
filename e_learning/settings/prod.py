@@ -9,7 +9,7 @@ ADMINS = [
     ('calebomariba', 'calebomariba1993@gmail.com'),
 ]
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['e_learningproject.com', 'www.e_learningprojet.com']
 
 DATABASES = {
     'default': {
