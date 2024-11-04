@@ -1,0 +1,16 @@
+# upstream for uWSGI
+upstream uwsgi_app {
+    server unix:/code/e_learning/uwsgi_app.sock;  # Adjusted path
+}
+
+server {
+    listen         80;
+    server_name    www.e_learningproject.com e_learningproject.com;
+    error_log      /var/log/nginx/error.log warn;  # Ensure this path is writable
+    access_log     /var/log/nginx/access.log main;  # Ensure this path is writable
+
+    location / {
+        include         /etc/nginx/uwsgi_params;
+        uwsgi_pass      uwsgi_app;
+    }
+}

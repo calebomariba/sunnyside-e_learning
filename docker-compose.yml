@@ -16,14 +16,11 @@ services:
       - ./data/cache:/data
   web:
     build: .
-    command:  ["./wait-for-it.sh", "db:5432", "--",
-                "python", "manage.py", "runserver",
-                "0.0.0.0:8000"]
+    command: [ "./wait-for-it.sh", "db:5432", "--", "uwsgi", "--ini", "/code/config/uwsgi/uwsgi.ini" ]
     restart: always
     volumes:
-      - .:/code
-    ports:
-      - "8000:8000"
+      - /home/calebomariba/projects/e_learning:/code
+
     environment:
       - DJANGO_SETTINGS_MODULE=e_learning.settings.prod
       - POSTGRES_DB=postgres
@@ -32,3 +29,12 @@ services:
     depends_on:
       - db
       - cache
+
+  nginx:
+    image: nginx:1.25.5
+    restart: always
+    volumes:
+      - ./config/nginx:/etc/nginx/templates
+      - .:/code
+    ports:
+      - "80:80"
